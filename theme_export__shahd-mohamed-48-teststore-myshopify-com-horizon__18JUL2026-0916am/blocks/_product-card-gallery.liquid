@@ -26,9 +26,31 @@
         </div>
       </div>
     {%- endif -%}
+    {% comment %}
     {% if product.available and settings.quick_add or settings.mobile_quick_add %}
       {% render 'quick-add', product: product, section_id: section.id %}
     {% endif %}
+    {% endcomment %}
+    <quick-add-component
+      class="product-card__quick-add-wrapper"
+      data-product-title="{{ product.title | escape }}"
+      data-product-id="{{ product.id }}"
+      data-quick-add-button="choose"
+      data-product-options-count="{{ product.options.size }}"
+      data-uses-selling-plans="false"
+    >
+      <button
+        class="product-card__plus-button"
+        type="button"
+        aria-label="View details of {{ product.title | escape }}"
+        on:click="quick-add-component/handleClick"
+      >
+        <svg class="plus-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="12" y1="5" x2="12" y2="19"></line>
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+        </svg>
+      </button>
+    </quick-add-component>
   {% endunless %}
 {% endcapture %}
 

@@ -1,0 +1,106 @@
+{{ 'custom-hero.css' | asset_url | stylesheet_tag }}
+
+<div class="custom-hero-section section-{{ section.id }}">
+  
+  <!-- ZONE 1: Pure Top Image Banner (1440px x 390px) -->
+  <div class="hero-top-banner-wrapper">
+    {% if section.settings.background_image != blank %}
+      <img src="{{ section.settings.background_image | image_url: width: 1440 }}" alt="Hero Line Art Banner" width="1440" height="390" loading="eager" class="hero-banner-img">
+    {% else %}
+      <img src="{{ 'hero.svg' | asset_url }}" alt="Hero Line Art Banner" width="1440" height="390" loading="eager" class="hero-banner-img">
+    {% endif %}
+  </div>
+
+  <!-- ZONE 2: Content Layout Area (Side-by-Side Row) -->
+  <div class="hero-bottom-container">
+    <div class="hero-content-row">
+      
+      <!-- ======================================== -->
+      <!-- LEFT COLUMN: Text + Button               -->
+      <!-- ======================================== -->
+      <div class="hero-content-column-left">
+        {% if section.settings.title != blank %}
+          <h1 class="custom-hero-heading">{{ section.settings.title }}</h1>
+        {% endif %}
+
+        <div class="custom-hero-body-wrapper">
+          {% if section.settings.subtext != blank %}
+            <p class="custom-hero-subtext">{{ section.settings.subtext }}</p>
+          {% endif %}
+          
+      
+        </div>
+
+        <!-- Button -->
+        <a href="{{ section.settings.button_link | default: '#' }}" class="custom-hero-button">
+          <span class="button-text">{{ section.settings.button_label | default: 'SHOP NOW' }}</span>
+          <svg class="arrow-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </a>
+      </div>
+
+      <!-- ======================================== -->
+      <!-- RIGHT COLUMN: Image                      -->
+      <!-- ======================================== -->
+      <div class="hero-content-column-right">
+        {% if section.settings.background_image != blank %}
+          <img src="{{ section.settings.background_image | image_url: width: 900 }}" alt="Hero Side Graphic" width="890" height="402" loading="lazy" class="hero-side-illustration">
+        {% else %}
+          <img src="{{ 'hero.svg' | asset_url }}" alt="Hero Side Graphic" width="890" height="402" loading="lazy" class="hero-side-illustration">
+        {% endif %}
+      </div>
+
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Custom Line-Art Hero",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Line Art Image Asset"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "The Gift Guide"
+    },
+    {
+      "type": "textarea",
+      "id": "subtext",
+      "label": "Subtext",
+      "default": "Discover Joy: Your Ultimate Holiday Gift Destination. Explore our curated selection and find the perfect gifts to delight your loved ones this holiday season."
+    },
+    {
+      "type": "image_picker",
+      "id": "avatar_image",
+      "label": "Custom Avatar Image"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button Label",
+      "default": "SHOP NOW"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Line-Art Hero",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}
+
+<script src="{{ 'custom-hero.js' | asset_url }}" defer></script>

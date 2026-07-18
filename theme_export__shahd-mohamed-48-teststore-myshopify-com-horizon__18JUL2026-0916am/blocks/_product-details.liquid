@@ -22,6 +22,16 @@
         {{- closest.product.title }}
       </a>
     </div>
+    {% liquid
+      assign desc_text = closest.product.description | strip_html | strip
+      if desc_text == blank
+        assign desc_text = 'Blue silk tuxedo with marbled aquatic pattern and dark lining. Sleeves are complete with rounded hem and black buttons.'
+      endif
+      assign variant = closest.product.selected_or_first_available_variant
+      assign price_display = variant.price | money
+    %}
+    <div class="product-direct-description">{{ desc_text }}</div>
+    <div class="product-direct-price">{{ price_display }}</div>
     {% content_for 'blocks' %}
   {% endcapture %}
 

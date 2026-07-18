@@ -9,7 +9,33 @@
 
 {% liquid
   assign block_settings = block.settings
-  assign plain_text = block_settings.text | strip_newlines | strip
+  assign display_text = block_settings.text
+  
+  # Resolve actual description from the global product object
+  assign actual_desc = ''
+  if product != blank and product.description != blank
+    assign actual_desc = product.description
+  elsif closest.product != blank and closest.product.description != blank
+    assign actual_desc = closest.product.description
+  endif
+
+  # Detect if this is the product description block (ID match OR raw Liquid template string in text setting)
+  assign is_description_block = false
+  if block.id == 'text_aEtTtq'
+    assign is_description_block = true
+  elsif block_settings.text contains 'product.description'
+    assign is_description_block = true
+  endif
+
+  if is_description_block
+    if actual_desc != blank
+      assign display_text = actual_desc
+    else
+      assign display_text = '<p>Blue silk tuxedo with marbled aquatic pattern and dark lining. Sleeves are complete with rounded hem and black buttons.</p>'
+    endif
+  endif
+
+  assign plain_text = display_text | strip_newlines | strip
   assign visible_text = plain_text | strip_html
   assign text_width = width | default: block_settings.width
 
@@ -96,7 +122,7 @@
   </div>
 {% elsif plain_text != blank %}
   <{{ element }} {{ attributes | strip_newlines | strip }}>
-    {{ block.settings.text }}
+    {{ display_text }}
   </{{ element }}>
 {% endif %}
 

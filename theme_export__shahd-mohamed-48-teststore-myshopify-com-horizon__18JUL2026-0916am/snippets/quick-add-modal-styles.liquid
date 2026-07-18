@@ -596,7 +596,7 @@
 
   .quick-add-modal__content .text-block.rte:not(product-price),
   .quick-add-modal__content .view-more-details__wrapper {
-    display: none;
+    display: block;
   }
 
   @keyframes fadeSlideIn {
@@ -609,5 +609,305 @@
       opacity: 1;
       transform: translateY(0);
     }
+  }
+
+  /* ======================================================== */
+  /* CUSTOM OVERRIDES FOR DETAIL MODAL CARD                    */
+  /* ======================================================== */
+
+  /* Two-column grid split layout on desktop */
+  .quick-add-modal__content {
+    display: grid !important;
+    grid-template-columns: 1fr 1.1fr !important;
+    column-gap: 32px !important;
+    row-gap: 12px !important;
+    padding: 32px !important;
+    background-color: #ffffff !important;
+    max-height: 90vh !important;
+    overflow-y: auto !important;
+  }
+
+  .quick-add-modal__content .product-details,
+  .quick-add-modal__content .product-details .group-block {
+    display: contents !important;
+  }
+
+  .quick-add-modal__content .divider,
+  .quick-add-modal__content [class*="divider"],
+  .quick-add-modal__content [id*="divider"] {
+    display: none !important;
+  }
+
+  .quick-add-modal__content .product-information__media,
+  .quick-add-modal__content media-gallery {
+    grid-column: 1 !important;
+    grid-row: 1 / span 3 !important;
+    width: 100% !important;
+    margin: 0 !important;
+  }
+
+  .quick-add-modal__content .view-product-title {
+    grid-column: 2 !important;
+    grid-row: 1 !important;
+    margin: 0 !important;
+  }
+
+  .quick-add-modal__content product-price {
+    grid-column: 2 !important;
+    grid-row: 2 !important;
+    margin: 0 !important;
+  }
+
+  /* Show and style product description in quick add */
+  .quick-add-modal__content .text-block.rte:not(product-price),
+  .quick-add-modal__content [class*="text-block--text_aEtTtq"],
+  .quick-add-modal__content rte-formatter,
+  .quick-add-modal__content .rte {
+    grid-column: 2 !important;
+    grid-row: 3 !important;
+    display: block !important;
+    font-size: 14px !important;
+    line-height: 1.6 !important;
+    color: #4a4a4a !important;
+    margin: 0 0 16px 0 !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    height: auto !important;
+  }
+
+  /* Variant picker and add to cart buttons span both columns below */
+  .quick-add-modal__content variant-picker {
+    grid-column: 1 / -1 !important;
+    grid-row: 4 !important;
+    width: 100% !important;
+  }
+
+  .quick-add-modal__content product-form-component,
+  .quick-add-modal__content .product-form-buttons {
+    grid-column: 1 / -1 !important;
+    grid-row: 5 !important;
+    width: 100% !important;
+  }
+
+  @media screen and (max-width: 749px) {
+    .quick-add-modal__content {
+      grid-template-columns: 1fr !important;
+      gap: 16px !important;
+      padding: 20px !important;
+    }
+
+    .quick-add-modal__content .product-information__media,
+    .quick-add-modal__content media-gallery {
+      grid-column: 1 !important;
+      grid-row: auto !important;
+    }
+
+    .quick-add-modal__content .view-product-title {
+      grid-column: 1 !important;
+      grid-row: auto !important;
+    }
+
+    .quick-add-modal__content product-price {
+      grid-column: 1 !important;
+      grid-row: auto !important;
+    }
+
+    .quick-add-modal__content .text-block.rte:not(product-price),
+    .quick-add-modal__content [class*="text-block--text_aEtTtq"],
+    .quick-add-modal__content rte-formatter,
+    .quick-add-modal__content .rte {
+      grid-column: 1 !important;
+      grid-row: auto !important;
+      margin-top: 12px !important;
+      margin-bottom: 24px !important;
+    }
+
+    .quick-add-modal__content variant-picker {
+      grid-column: 1 !important;
+      grid-row: auto !important;
+    }
+
+    .quick-add-modal__content product-form-component,
+    .quick-add-modal__content .product-form-buttons {
+      grid-column: 1 !important;
+      grid-row: auto !important;
+    }
+  }
+
+  /* Product details typography */
+  .quick-add-modal__content .product-details .view-product-title h1,
+  .quick-add-modal__content .product-details .view-product-title a {
+    font-size: 24px !important;
+    font-weight: 400 !important;
+    color: #121212 !important;
+    margin: 0 0 8px 0 !important;
+    text-decoration: none !important;
+    line-height: 1.2 !important;
+  }
+
+  .quick-add-modal__content .product-details product-price {
+    font-size: 20px !important;
+    font-weight: 500 !important;
+    color: #121212 !important;
+    margin-bottom: 16px !important;
+    display: block !important;
+  }
+
+  /* Hide Quantity Selector and Buy it now accelerated payment button */
+  .quick-add-modal__content quantity-selector,
+  .quick-add-modal__content .quantity-selector,
+  .quick-add-modal__content .product-info__quantity,
+  .quick-add-modal__content accelerated-checkout,
+  .quick-add-modal__content .shopify-payment-button,
+  .quick-add-modal__content [id^="accelerated-checkout"] {
+    display: none !important;
+  }
+
+  /* Custom dropdown size selector */
+  .quick-add-modal__content .variant-option {
+    margin-bottom: 24px !important;
+  }
+
+  .quick-add-modal__content variant-picker form {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 20px !important;
+    width: 100% !important;
+  }
+
+  .quick-add-modal__content .variant-option label,
+  .quick-add-modal__content .variant-option legend {
+    font-size: 16px !important;
+    font-weight: 400 !important;
+    margin-bottom: 8px !important;
+    color: #121212 !important;
+    display: block !important;
+    text-transform: capitalize !important;
+  }
+
+  .quick-add-modal__content .variant-option__select-wrapper {
+    position: relative !important;
+    width: 100% !important;
+    border: 1px solid #121212 !important;
+    border-radius: 0px !important;
+    display: flex !important;
+    align-items: center !important;
+    background-color: #ffffff !important;
+    height: 52px !important;
+  }
+
+  .quick-add-modal__content .variant-option__select {
+    width: 100% !important;
+    height: 100% !important;
+    padding: 0 16px !important;
+    font-size: 16px !important;
+    border: none !important;
+    background: transparent !important;
+    appearance: none !important;
+    -webkit-appearance: none !important;
+    -moz-appearance: none !important;
+    cursor: pointer !important;
+    color: #121212 !important;
+    outline: none !important;
+  }
+
+  .quick-add-modal__content .variant-option__select-wrapper::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 52px;
+    border-left: 1px solid #121212;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 6' fill='none'%3E%3Cpath d='M1 1L5 5L9 1' stroke='%23121212' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-size: 12px 8px;
+    background-repeat: no-repeat;
+    background-position: center;
+    pointer-events: none;
+  }
+
+  .quick-add-modal__content .variant-option__select-wrapper .icon-caret {
+    display: none !important;
+  }
+
+  /* Custom Color Selector buttons inside modal */
+  .quick-add-modal__content .variant-option--buttons fieldset {
+    border: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  .quick-add-modal__content .variant-option--buttons label {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    border: 1px solid #121212 !important;
+    background-color: #ffffff !important;
+    color: #121212 !important;
+    font-size: 16px !important;
+    padding: 12px 24px !important;
+    margin-right: 8px !important;
+    margin-bottom: 8px !important;
+    border-radius: 0px !important;
+    position: relative !important;
+    cursor: pointer !important;
+    min-width: 120px !important;
+    height: 52px !important;
+    box-sizing: border-box !important;
+    font-family: inherit !important;
+  }
+
+  .quick-add-modal__content .variant-option--buttons label input[type="radio"] {
+    position: absolute !important;
+    opacity: 0 !important;
+    width: 0 !important;
+    height: 0 !important;
+  }
+
+  .quick-add-modal__content .variant-option--buttons label:has(input[type="radio"]:checked) {
+    border-left: 4px solid #0b4c8c !important;
+    border-width: 1px 1px 1px 4px !important;
+    font-weight: 500 !important;
+  }
+
+  /* Custom Black Add to Cart Button */
+  .quick-add-modal__content .product-form-buttons {
+    width: 100% !important;
+    margin-top: 16px !important;
+  }
+
+  .quick-add-modal__content .product-form-buttons .add-to-cart-button {
+    background-color: #000000 !important;
+    color: #ffffff !important;
+    border-radius: 0px !important;
+    font-size: 14px !important;
+    font-weight: 500 !important;
+    letter-spacing: 0.1em !important;
+    text-transform: uppercase !important;
+    padding: 16px 24px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 12px;
+    border: none !important;
+    width: 100% !important;
+    position: relative !important;
+    height: 54px !important;
+  }
+
+  .quick-add-modal__content .product-form-buttons .add-to-cart-button::after {
+    content: '';
+    display: inline-block;
+    width: 24px;
+    height: 16px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='white' stroke-width='2'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M17 8l4 4m0 0l-4 4m4-4H3'/%3E%3C/svg%3E");
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin-left: 8px;
+    transition: transform 0.2s ease;
+  }
+
+  .quick-add-modal__content .product-form-buttons .add-to-cart-button:hover::after {
+    transform: translateX(4px);
   }
 {% endstylesheet %}

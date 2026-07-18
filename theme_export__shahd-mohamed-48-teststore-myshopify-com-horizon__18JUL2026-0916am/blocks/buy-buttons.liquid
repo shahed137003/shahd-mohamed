@@ -94,6 +94,7 @@
             endif
           -%}
 
+          {% comment %}
           {%- if has_quantity_rules -%}
             {%- assign cart_quantity = cart | item_count_for_variant: variant.id -%}
             <div
@@ -134,6 +135,7 @@
               {%- endif -%}
             </div>
           {%- endif -%}
+          {% endcomment %}
 
           {%- if product.quantity_price_breaks_configured? and variant.quantity_price_breaks.size > 0 -%}
             {%- liquid
@@ -228,12 +230,14 @@
             add_to_cart_text: add_to_cart_text
           %}
 
+          {% comment %}
           {% content_for 'block',
             type: 'accelerated-checkout',
             id: 'accelerated-checkout',
             can_add_to_cart: can_add_to_cart,
             form_obj: form
           %}
+          {% endcomment %}
         </div>
         {%- if block_settings.gift_card_form and product.gift_card? -%}
           </span>
@@ -621,20 +625,12 @@
       "name": "t:names.product_buy_buttons",
       "category": "t:categories.product",
       "blocks": {
-        "quantity": {
-          "type": "quantity",
-          "static": true
-        },
         "add-to-cart": {
           "type": "add-to-cart",
           "static": true,
           "settings": {
             "style_class": "button-secondary"
           }
-        },
-        "accelerated-checkout": {
-          "type": "accelerated-checkout",
-          "static": true
         }
       }
     }
