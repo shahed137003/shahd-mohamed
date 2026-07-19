@@ -3,6 +3,7 @@
   type="module"
   fetchpriority="low"
 ></script>
+
 <quick-add-dialog id="quick-add-dialog">
   <dialog
     class="quick-add-modal dialog-modal color-custom-popover"
@@ -29,16 +30,16 @@
 </quick-add-dialog>
 
 <style>
-  /* ─── Modal shell ─── */
+  /* ─── MODAL SHELL ─── */
   .quick-add-modal {
     background: transparent !important;
     border: none !important;
     box-shadow: none !important;
     overflow: visible !important;
     padding: 0 !important;
-    max-width: min(460px, 96vw) !important;
-    width:     min(460px, 96vw) !important;
-    border-radius: 14px !important;
+    max-width: min(345px, 95vw) !important;
+    width: min(345px, 95vw) !important;
+    border-radius: 0px !important;
   }
 
   .quick-add-modal[open] {
@@ -47,89 +48,88 @@
     justify-content: center !important;
   }
 
-  /* ─── White Card Wrapper ─── */
+  /* ─── CARD WRAPPER ─── */
   .quick-add-modal__card-wrapper {
     position: relative !important;
     width: 100% !important;
-    background: #fff !important;
-    border-radius: 14px !important;
-    box-shadow: 0 12px 32px rgba(0,0,0,0.12) !important;
+    background: #ffffff !important;
+    border-radius: 0px !important;
+    border: 1px solid #e2e2e2 !important;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08) !important;
+    padding: 14px 16px 14px !important;
+    box-sizing: border-box !important;
   }
 
-  /* Close button — inside the card wrapper, top-right corner */
+  /* ─── CLOSE BUTTON ─── */
   .quick-add-modal__close {
     position: absolute !important;
     top: 8px !important;
     right: 8px !important;
-    width: 28px !important;
-    height: 28px !important;
+    width: 24px !important;
+    height: 24px !important;
     border-radius: 50% !important;
-    background: #fff !important;
-    border: 1px solid rgba(0,0,0,0.15) !important;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.12) !important;
+    background: #f0f0f0 !important;
+    border: none !important;
+    box-shadow: none !important;
     display: inline-flex !important;
     align-items: center !important;
     justify-content: center !important;
     z-index: 50 !important;
     cursor: pointer !important;
+    transition: background 0.2s ease !important;
   }
 
-  /* ─── Grid card content ─── */
+  .quick-add-modal__close:hover {
+    background: #e0e0e0 !important;
+  }
+
+  .quick-add-modal__close svg {
+    width: 14px !important;
+    height: 14px !important;
+    stroke: #333 !important;
+  }
+
+  /* ─── CONTENT ─── */
   .quick-add-modal .quick-add-modal__content {
-    display: grid !important;
-    grid-template-columns: 150px 1fr !important;
-    grid-template-rows: auto auto auto auto auto !important;
-    column-gap: 16px !important;
-    row-gap: 6px !important;
-    padding: 10px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 12px !important;
+    width: 100% !important;
+    max-height: 90vh !important;
+    overflow-y: auto !important;
+    padding: 0 !important;
     background: transparent !important;
     border-radius: 0 !important;
-    box-shadow: none !important;
-    max-height: 80vh !important;
-    overflow-y: auto !important;
-    align-items: start !important;
-    width: 100% !important;
   }
 
-  /* ─── Unwrap product-details outer shell only ─── */
+  /* ─── UNWRAP PRODUCT-DETAILS ─── */
   .quick-add-modal .quick-add-modal__content .product-details {
     display: contents !important;
   }
-  /* Unwrap the single outer group-block but NOT nested ones */
+
   .quick-add-modal .quick-add-modal__content .product-details > .group-block {
     display: contents !important;
   }
 
-  /* ─── Hide noise ─── */
-  .quick-add-modal .quick-add-modal__content .divider,
-  .quick-add-modal .quick-add-modal__content [class*="divider"],
-  .quick-add-modal .quick-add-modal__content product-price,
-  .quick-add-modal .quick-add-modal__content .text-block.rte,
-  .quick-add-modal .quick-add-modal__content rte-formatter,
-  .quick-add-modal .quick-add-modal__content [class*="text-block--text_aEtTtq"],
-  .quick-add-modal .quick-add-modal__content quantity-selector,
-  .quick-add-modal .quick-add-modal__content accelerated-checkout,
-  .quick-add-modal .quick-add-modal__content .shopify-payment-button {
-    display: none !important;
+  /* ─── ROW 1: PRODUCT INFO – TWO COLUMNS ─── */
+  .quick-add-modal .quick-add-modal__content .product-info-row {
+    display: grid !important;
+    grid-template-columns: 1fr 1.2fr !important;
+    gap: 12px !important;
+    width: 100% !important;
+    align-items: start !important;
   }
 
-  /* Hide the group_icgrde block (title + price from section blocks — we inject directly) */
-  .quick-add-modal .quick-add-modal__content .product-details > .group-block > .group-block {
-    display: none !important;
-  }
-
-  /* ─── Col 1: Image fills all rows ─── */
+  /* ─── LEFT COLUMN: IMAGE ─── */
   .quick-add-modal .quick-add-modal__content .product-information__media {
-    grid-column: 1 !important;
-    grid-row: 1 / -1 !important;
-    width: 150px !important;
-    height: 100% !important;
-    min-height: 180px !important;
-    position: relative !important;
+    width: 100% !important;
+    min-height: 195px !important;
+    max-height: 220px !important;
+    aspect-ratio: 2 / 3 !important;
+    border-radius: 0px !important;
     overflow: hidden !important;
-    border-radius: 8px !important;
-    margin: 0 !important;
-    align-self: stretch !important;
+    background: #ffffff !important;
+    position: relative !important;
   }
 
   .quick-add-modal .quick-add-modal__content media-gallery {
@@ -137,256 +137,402 @@
     inset: 0 !important;
     width: 100% !important;
     height: 100% !important;
-    margin: 0 !important;
   }
 
-  /* ─── Col 2 rows ─── */
+  .quick-add-modal .quick-add-modal__content media-gallery img,
+  .quick-add-modal .quick-add-modal__content .product-information__media img {
+    object-fit: contain !important; /* Ensure 100% of the image is visible without cropping */
+    width: 100% !important;
+    height: 100% !important;
+    background: #ffffff !important;
+  }
 
-  /* Row 1 – Title */
+  /* ─── RIGHT COLUMN: PRODUCT INFO TEXT ─── */
+  .quick-add-modal .quick-add-modal__content .product-info-text {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 2px !important;
+    min-width: 0 !important;
+  }
+
+  /* Title */
   .quick-add-modal .quick-add-modal__content .view-product-title,
   .quick-add-modal .quick-add-modal__content .product-header {
-    grid-column: 2 !important;
-    grid-row: 1 !important;
     display: block !important;
     margin: 0 !important;
   }
+
   .quick-add-modal .quick-add-modal__content .view-product-title a,
   .quick-add-modal .quick-add-modal__content .product-header a {
-    font-size: 15px !important;
+    font-size: 13.5px !important;
     font-weight: 600 !important;
     color: #111 !important;
     text-decoration: none !important;
-    line-height: 1.3 !important;
+    line-height: 1.25 !important;
     display: block !important;
   }
 
-  /* Row 2 – Description */
-  .quick-add-modal .quick-add-modal__content .product-direct-description {
-    grid-column: 2 !important;
-    grid-row: 2 !important;
+  /* ─── HIDE ORIGINAL PRICE ─── */
+  .quick-add-modal .quick-add-modal__content product-price,
+  .quick-add-modal .quick-add-modal__content .product-price {
+    display: none !important;
+  }
+
+  /* ─── SHOW CUSTOM PRICE ─── */
+  .quick-add-modal .quick-add-modal__content .product-direct-price {
+    display: block !important;
+    font-size: 13.5px !important;
+    font-weight: 600 !important;
+    color: #111 !important;
+    margin: 2px 0 !important;
+  }
+
+  /* Description */
+  .quick-add-modal .quick-add-modal__content .product-direct-description,
+  .quick-add-modal .quick-add-modal__content .text-block.rte:not(product-price) {
     display: block !important;
     font-size: 11px !important;
-    line-height: 1.5 !important;
+    line-height: 1.35 !important;
     color: #666 !important;
     margin: 0 !important;
+    max-height: 2.8em !important;
+    overflow: hidden !important;
   }
 
-  /* Row 3 – Price */
-  .quick-add-modal .quick-add-modal__content .product-direct-price {
-    grid-column: 2 !important;
-    grid-row: 3 !important;
-    display: block !important;
-    font-size: 14px !important;
-    font-weight: 700 !important;
-    color: #111 !important;
-    margin: 2px 0 0 !important;
+  /* ─── HIDE NOISE ─── */
+  .quick-add-modal .quick-add-modal__content .divider,
+  .quick-add-modal .quick-add-modal__content [class*="divider"],
+  .quick-add-modal .quick-add-modal__content .product-details > .group-block > .group-block,
+  .quick-add-modal .quick-add-modal__content quantity-selector,
+  .quick-add-modal .quick-add-modal__content accelerated-checkout,
+  .quick-add-modal .quick-add-modal__content .shopify-payment-button,
+  .quick-add-modal .quick-add-modal__content [id^="accelerated-checkout"] {
+    display: none !important;
   }
 
-  /* Row 4 – Variant picker */
+  /* ─── ROW 2 & 3: VARIANT SELECTORS ─── */
   .quick-add-modal .quick-add-modal__content variant-picker {
-    grid-column: 2 !important;
-    grid-row: 4 !important;
     width: 100% !important;
     margin: 0 !important;
   }
+
   .quick-add-modal .quick-add-modal__content variant-picker form {
     display: flex !important;
     flex-direction: column !important;
-    gap: 8px !important;
+    gap: 6px !important;
+    width: 100% !important;
   }
+
+  /* Each variant option block */
   .quick-add-modal .quick-add-modal__content .variant-option {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 2px !important;
+    width: 100% !important;
     margin: 0 !important;
   }
+
+  /* Label (Color / Size) */
   .quick-add-modal .quick-add-modal__content .variant-option label,
   .quick-add-modal .quick-add-modal__content .variant-option legend {
     font-size: 10px !important;
     font-weight: 600 !important;
     color: #111 !important;
     text-transform: uppercase !important;
-    letter-spacing: 0.06em !important;
-    margin-bottom: 4px !important;
+    letter-spacing: 0.05em !important;
+    margin: 0 !important;
     display: block !important;
+    width: 100% !important;
+    text-align: left !important;
   }
-  /* Dropdown */
+
+  /* ─── SIZE DROPDOWN ─── */
+  /* ─── SIZE DROPDOWN ─── */
   .quick-add-modal .quick-add-modal__content .variant-option__select-wrapper {
-    height: 34px !important;
-    border: 1px solid #111 !important;
-    border-radius: 0 !important;
+    height: 28px !important;
+    border: 1px solid #ddd !important;
+    border-radius: 0px !important;
     display: flex !important;
     align-items: center !important;
     background: #fff !important;
-    max-width: 100% !important;
     position: relative !important;
+    width: 100% !important;
   }
+
   .quick-add-modal .quick-add-modal__content .variant-option__select {
     width: 100% !important;
     height: 100% !important;
     border: none !important;
     background: transparent !important;
-    font-size: 12px !important;
-    padding: 0 10px !important;
+    font-size: 11px !important;
+    padding: 0 12px !important;
     appearance: none !important;
     -webkit-appearance: none !important;
     cursor: pointer !important;
     outline: none !important;
+    color: #111 !important;
   }
+
   .quick-add-modal .quick-add-modal__content .variant-option__select-wrapper::after {
     content: '';
     position: absolute;
-    right: 0; top: 0; bottom: 0;
-    width: 34px;
-    border-left: 1px solid #111;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 6'%3E%3Cpath d='M1 1L5 5L9 1' stroke='%23111' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 28px;
+    border-left: 1px solid #ddd;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 7'%3E%3Cpath d='M1 1L6 6L11 1' stroke='%23111' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
     background-size: 10px 6px;
     background-repeat: no-repeat;
     background-position: center;
     pointer-events: none;
   }
-  .quick-add-modal .quick-add-modal__content .icon-caret { display: none !important; }
-  /* Swatch/button options */
-  .quick-add-modal .quick-add-modal__content .variant-option--buttons fieldset {
-    border: none !important; padding: 0 !important; margin: 0 !important;
-  }
-  .quick-add-modal .quick-add-modal__content .variant-option--buttons label {
-    display: inline-flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    border: 1px solid #111 !important;
-    font-size: 11px !important;
-    font-weight: 500 !important;
-    padding: 0 12px !important;
-    height: 30px !important;
-    min-width: 50px !important;
-    margin: 0 4px 4px 0 !important;
-    cursor: pointer !important;
-    position: relative !important;
-    background: #fff !important;
-    color: #111 !important;
-  }
-  .quick-add-modal .quick-add-modal__content .variant-option--buttons label input[type="radio"] {
-    position: absolute !important; opacity: 0 !important; width: 0 !important; height: 0 !important;
-  }
-  .quick-add-modal .quick-add-modal__content .variant-option--buttons label:has(input:checked) {
-    background: #111 !important; color: #fff !important;
+
+  .quick-add-modal .quick-add-modal__content .icon-caret {
+    display: none !important;
   }
 
-  /* Row 5 – Add to cart */
+  /* ─── COLOR BUTTONS – SINGLE ROW ─── */
+  .quick-add-modal .quick-add-modal__content .variant-option--buttons fieldset {
+    border: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    gap: 6px !important;
+    width: 100% !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+  }
+
+  .quick-add-modal .quick-add-modal__content .variant-option--buttons label {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    flex: 1 1 0 !important;
+    border: 1px solid #ddd !important;
+    border-radius: 0px !important;
+    font-size: 11px !important;
+    font-weight: 500 !important;
+    padding: 0 10px !important;
+    height: 26px !important;
+    min-width: 40px !important;
+    cursor: pointer !important;
+    background: #fff !important;
+    color: #111 !important;
+    transition: all 0.2s ease !important;
+    text-transform: capitalize !important;
+    white-space: nowrap !important;
+  }
+
+  .quick-add-modal .quick-add-modal__content .variant-option--buttons label:hover {
+    border-color: #888 !important;
+  }
+
+  .quick-add-modal .quick-add-modal__content .variant-option--buttons label input[type="radio"] {
+    position: absolute !important;
+    opacity: 0 !important;
+    width: 0 !important;
+    height: 0 !important;
+  }
+
+  .quick-add-modal .quick-add-modal__content .variant-option--buttons label:has(input:checked) {
+    background: #111 !important;
+    color: #fff !important;
+    border-color: #111 !important;
+  }
+
+  /* ─── ROW 4: CTA WRAPPER ─── */
   .quick-add-modal .quick-add-modal__content product-form-component,
   .quick-add-modal .quick-add-modal__content .product-form-buttons {
-    grid-column: 2 !important;
-    grid-row: 5 !important;
     width: 100% !important;
-    margin: 0 !important;
+    margin: 2px 0 0 !important;
+    display: block !important;
   }
+
   .quick-add-modal .quick-add-modal__content .product-form-buttons .add-to-cart-button {
     width: 100% !important;
-    height: 36px !important;
-    background: #111 !important;
+    height: 32px !important;
+    background: #000 !important;
     color: #fff !important;
     font-size: 11px !important;
     font-weight: 600 !important;
     letter-spacing: 0.08em !important;
     text-transform: uppercase !important;
     border: none !important;
+    border-radius: 0px !important;
     cursor: pointer !important;
     display: flex !important;
     align-items: center !important;
-    justify-content: center !important;
-    gap: 8px !important;
+    justify-content: space-between !important;
+    padding: 0 14px !important;
+    transition: background 0.2s ease !important;
   }
 
-  /* Disclosures hidden in compact view */
-  .quick-add-modal .quick-add-modal__content disclosures-summary-fit,
-  .quick-add-modal .quick-add-modal__content .disclosures__container {
-    display: none !important;
+  .quick-add-modal .quick-add-modal__content .product-form-buttons .add-to-cart-button:hover {
+    background: #222 !important;
   }
 
-  /* ─── Mobile & Tablet (<= 749px) ─── */
+  .quick-add-modal .quick-add-modal__content .product-form-buttons .add-to-cart-button::after {
+    content: '';
+    display: inline-block;
+    width: 16px;
+    height: 11px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='white' stroke-width='2'%3E%3Cpath d='M17 8l4 4m0 0l-4 4m4-4H3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    transition: transform 0.2s ease;
+    flex-shrink: 0;
+  }
+
+  .quick-add-modal .quick-add-modal__content .product-form-buttons .add-to-cart-button:hover::after {
+    transform: translateX(4px);
+  }
+
+  /* ─── Responsive Mobile View (Significantly Smaller Vertical Height, Same Layout & Structure) ─── */
   @media screen and (max-width: 749px) {
     .quick-add-modal,
     .quick-add-modal__card-wrapper {
-      max-width: 96vw !important;
-      width: 96vw !important;
+      max-width: 94vw !important;
+      width: 94vw !important;
+      padding: 12px 14px 12px 14px !important;
+      border-radius: 0px !important;
     }
 
-    .quick-add-modal .quick-add-modal__content {
-      grid-template-columns: 120px minmax(0, 1fr) !important;
-      grid-template-rows: auto auto auto auto auto !important;
-      padding: 14px !important;
+    /* Keep Image alongside Name, Price & Description side-by-side in same row */
+    .quick-add-modal .quick-add-modal__content .product-details,
+    .quick-add-modal .quick-add-modal__content .product-info-row {
+      display: grid !important;
+      grid-template-columns: 114px 1fr !important;
+      flex-direction: row !important;
+      align-items: flex-start !important;
       column-gap: 12px !important;
-      row-gap: 6px !important;
-      width: 100% !important;
-      overflow-x: hidden !important;
+      row-gap: 3px !important;
+      text-align: left !important;
+      margin-bottom: 10px !important;
     }
 
-    /* Col 1: Image stays in left column */
-    .quick-add-modal .quick-add-modal__content .product-information__media,
-    .quick-add-modal .quick-add-modal__content media-gallery {
-      grid-column: 1 !important;
-      grid-row: 1 / -1 !important;
-      width: 120px !important;
+    .quick-add-modal .quick-add-modal__content .product-information__media {
+      width: 114px !important;
+      height: 188px !important;
+      aspect-ratio: 2 / 3.3 !important;
+      border-radius: 0px !important;
+      flex-shrink: 0 !important;
     }
 
-    /* Col 2: Ensure all text & controls stay in column 2 and wrap safely */
-    .quick-add-modal .quick-add-modal__content .view-product-title,
-    .quick-add-modal .quick-add-modal__content .product-header {
-      grid-column: 2 !important;
-      grid-row: 1 !important;
+    .quick-add-modal .quick-add-modal__content .product-info-text {
+      text-align: left !important;
+      align-items: flex-start !important;
+      gap: 2px !important;
     }
+
     .quick-add-modal .quick-add-modal__content .view-product-title a,
     .quick-add-modal .quick-add-modal__content .product-header a {
-      font-size: 14px !important;
-      word-break: break-word !important;
-      overflow-wrap: anywhere !important;
+      font-size: 13.5px !important;
+      line-height: 1.25 !important;
     }
 
-    .quick-add-modal .quick-add-modal__content .product-direct-description {
-      grid-column: 2 !important;
-      grid-row: 2 !important;
-      font-size: 11px !important;
-      word-break: break-word !important;
-      overflow-wrap: anywhere !important;
-    }
-
-    .quick-add-modal .quick-add-modal__content .product-direct-price {
-      grid-column: 2 !important;
-      grid-row: 3 !important;
+    .quick-add-modal .quick-add-modal__content .product-direct-price,
+    .quick-add-modal .quick-add-modal__content product-price {
       font-size: 13px !important;
+      margin: 2px 0 !important;
     }
 
+    .quick-add-modal .quick-add-modal__content .product-direct-description,
+    .quick-add-modal .quick-add-modal__content .text-block.rte:not(product-price) {
+      font-size: 10.5px !important;
+      line-height: 1.35 !important;
+      -webkit-line-clamp: 3 !important;
+    }
+
+    /* Tighter vertical gaps across variant picker and options */
     .quick-add-modal .quick-add-modal__content variant-picker {
-      grid-column: 2 !important;
-      grid-row: 4 !important;
-    }
-    .quick-add-modal .quick-add-modal__content .variant-option--buttons label {
-      min-width: 42px !important;
-      padding: 0 8px !important;
-      font-size: 10px !important;
-      height: 28px !important;
+      margin-top: 4px !important;
     }
 
+    .quick-add-modal .quick-add-modal__content variant-picker form {
+      gap: 8px !important;
+    }
+
+    .quick-add-modal .quick-add-modal__content .variant-option label,
+    .quick-add-modal .quick-add-modal__content .variant-option legend {
+      font-size: 11px !important;
+      margin-bottom: 3px !important;
+    }
+
+    /* Compact 26px height for Color buttons */
+    .quick-add-modal .quick-add-modal__content .variant-option--buttons label {
+      height: 26px !important;
+      font-size: 11px !important;
+      padding: 0 10px !important;
+      border-radius: 0px !important;
+    }
+
+    /* Compact 26px height for Size dropdown */
+    .quick-add-modal .quick-add-modal__content .variant-option__select-wrapper {
+      height: 26px !important;
+      border-radius: 0px !important;
+    }
+
+    .quick-add-modal .quick-add-modal__content .variant-option__select {
+      font-size: 11px !important;
+      padding: 0 32px 0 10px !important;
+    }
+
+    .quick-add-modal .quick-add-modal__content .variant-option__select-wrapper::after {
+      width: 28px !important;
+    }
+
+    /* Compact 32px height for Add to Cart CTA */
     .quick-add-modal .quick-add-modal__content product-form-component,
     .quick-add-modal .quick-add-modal__content .product-form-buttons {
-      grid-column: 2 !important;
-      grid-row: 5 !important;
+      margin-top: 10px !important;
     }
+
     .quick-add-modal .quick-add-modal__content .product-form-buttons .add-to-cart-button {
-      font-size: 10px !important;
-      height: 34px !important;
-      padding: 0 8px !important;
+      height: 32px !important;
+      font-size: 11px !important;
+      padding: 0 14px !important;
+      border-radius: 0px !important;
+    }
+
+    .quick-add-modal__close {
+      top: 6px !important;
+      right: 6px !important;
+      width: 22px !important;
+      height: 22px !important;
     }
   }
 
-  /* ─── Small Mobile (<= 480px) ─── */
-  @media screen and (max-width: 480px) {
-    .quick-add-modal .quick-add-modal__content {
-      grid-template-columns: 100px minmax(0, 1fr) !important;
-      padding: 12px !important;
-      column-gap: 10px !important;
+  /* Extra compact for very small screens (≤400px) */
+  @media screen and (max-width: 400px) {
+    .quick-add-modal__card-wrapper {
+      padding: 10px 12px 10px 12px !important;
     }
-    .quick-add-modal .quick-add-modal__content .product-information__media,
-    .quick-add-modal .quick-add-modal__content media-gallery {
+
+    .quick-add-modal .quick-add-modal__content .product-details,
+    .quick-add-modal .quick-add-modal__content .product-info-row {
+      grid-template-columns: 100px 1fr !important;
+      column-gap: 10px !important;
+      margin-bottom: 8px !important;
+    }
+
+    .quick-add-modal .quick-add-modal__content .product-information__media {
       width: 100px !important;
+      height: 165px !important;
+    }
+
+    .quick-add-modal .quick-add-modal__content .variant-option--buttons label,
+    .quick-add-modal .quick-add-modal__content .variant-option__select-wrapper {
+      height: 24px !important;
+      font-size: 10.5px !important;
+    }
+
+    .quick-add-modal .quick-add-modal__content .product-form-buttons .add-to-cart-button {
+      height: 30px !important;
+      font-size: 10.5px !important;
+      padding: 0 12px !important;
     }
   }
 </style>
