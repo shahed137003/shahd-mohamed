@@ -559,6 +559,25 @@
     }
   }
 </style>
+<script>
+  document.addEventListener('click', function(e) {
+    if (e.target.closest('.add-to-cart-button')) {
+      e.preventDefault();
+      const variantId = "{{ product.selected_or_first_available_variant.id }}";
+      fetch('/cart/add.js', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({ id: variantId, quantity: 1 })
+      })
+        .then(response => response.json())
+        .then(data => {
+          console.log('Added to cart', data);
+          // Optional UI feedback (e.g., toast notification)
+        })
+        .catch(err => console.error('Add to cart error', err));
+    }
+  });
+</script>
 
 {% render 'product-media-container-styles' %}
 {% render 'quick-add-modal-styles' %}

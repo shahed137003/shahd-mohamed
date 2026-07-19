@@ -540,7 +540,16 @@
       "
       style="{% render 'layout-panel-style', settings: section.settings %}"
     >
-      {% content_for 'blocks' %}
+      {% if section.settings.hero_heading != blank %}
+  <h2 class="hero__heading">{{ section.settings.hero_heading }}</h2>
+{% endif %}
+{% if section.settings.hero_subheading != blank %}
+  <p class="hero__subheading">{{ section.settings.hero_subheading }}</p>
+{% endif %}
+{% if section.settings.hero_body != blank %}
+  <div class="hero__body">{{ section.settings.hero_body }}</div>
+{% endif %}
+{% content_for 'blocks' %}
     </div>
   </div>
 </div>
@@ -1244,6 +1253,24 @@
       "step": 1,
       "unit": "px",
       "default": 0
+    },
+    {
+      "type": "text",
+      "id": "hero_heading",
+      "label": "Heading",
+      "default": "t:html_defaults.new_arrivals_h2"
+    },
+    {
+      "type": "text",
+      "id": "hero_subheading",
+      "label": "Sub‑heading",
+      "default": "t:html_defaults.made_with_care"
+    },
+    {
+      "type": "richtext",
+      "id": "hero_body",
+      "label": "Body copy",
+      "default": "<p>t:html_defaults.make_things_better_extended</p>"
     }
   ],
   "presets": [
