@@ -391,13 +391,13 @@
 
   /* ─── Responsive Mobile View ─── */
   @media screen and (max-width: 749px) {
-    /* ─── CENTER MODAL ON MOBILE, BUT SLIGHTLY LOWER ─── */
+    /* ─── CENTER MODAL PERFECTLY ─── */
     .quick-add-modal {
       margin: auto !important;
       position: fixed !important;
       top: 50% !important;
       left: 50% !important;
-      transform: translate(-50%, -30%) !important; /* shifted down */
+      transform: translate(-50%, -30%) !important;
       max-height: 90vh !important;
     }
 
@@ -409,26 +409,26 @@
       border-radius: 0px !important;
     }
 
-    /* Keep Image alongside Name, Price & Description side-by-side */
+    /* ─── TWO EQUAL COLUMNS ─── */
     .quick-add-modal .quick-add-modal__content .product-details,
     .quick-add-modal .quick-add-modal__content .product-info-row {
       display: grid !important;
-      grid-template-columns: 114px 1fr !important;
-      align-items: flex-start !important;
+      grid-template-columns: 1fr 1fr !important;
+      align-items: start !important;
       column-gap: 12px !important;
       row-gap: 3px !important;
       text-align: left !important;
       margin-bottom: 10px !important;
     }
 
-    /* ─── SQUARE IMAGE ON TABLET & MOBILE (114×114) ─── */
+    /* ─── SQUARE IMAGE, FULL WIDTH OF ITS COLUMN ─── */
     .quick-add-modal .quick-add-modal__content .product-information__media {
-      width: 114px !important;
-      height: 114px !important;
-      min-width: 114px !important;
-      max-width: 114px !important;
+      width: 100% !important;
+      aspect-ratio: 1 / 1 !important;   /* square */
+      height: auto !important;
+      min-width: unset !important;
+      max-width: unset !important;
       flex: 0 0 auto !important;
-      aspect-ratio: auto !important;
       border-radius: 0px !important;
       overflow: hidden !important;
       background: #ffffff !important;
@@ -444,18 +444,11 @@
       display: block !important;
     }
 
+    .quick-add-modal .quick-add-modal__content .product-information__media img,
     .quick-add-modal .quick-add-modal__content .product-information__media media-gallery img {
       width: 100% !important;
       height: 100% !important;
-      object-fit: cover !important;
-      object-position: center !important;
-      display: block !important;
-    }
-
-    .quick-add-modal .quick-add-modal__content .product-information__media img {
-      width: 100% !important;
-      height: 100% !important;
-      object-fit: cover !important;
+      object-fit: cover !important;      /* fills the square */
       object-position: center !important;
       display: block !important;
     }
@@ -540,7 +533,7 @@
     }
   }
 
-  /* Extra compact for very small screens (≤400px) */
+  /* Extra compact for very small screens (≤400px) – keep equal columns */
   @media screen and (max-width: 400px) {
     .quick-add-modal__card-wrapper {
       padding: 10px 12px 10px 12px !important;
@@ -548,17 +541,9 @@
 
     .quick-add-modal .quick-add-modal__content .product-details,
     .quick-add-modal .quick-add-modal__content .product-info-row {
-      grid-template-columns: 100px 1fr !important;
+      grid-template-columns: 1fr 1fr !important;
       column-gap: 10px !important;
       margin-bottom: 8px !important;
-    }
-
-    /* ─── SQUARE IMAGE ON SMALL MOBILE (100×100) ─── */
-    .quick-add-modal .quick-add-modal__content .product-information__media {
-      width: 300px !important;
-      height: 200px !important;
-      min-width: 300px !important;
-      max-width: 300px !important;
     }
 
     .quick-add-modal .quick-add-modal__content .variant-option--buttons label,
