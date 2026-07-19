@@ -11,16 +11,17 @@
   "type": "header",
   "name": "t:names.header",
   "sections": {
-    "header_section": {
+    "custom_header_HJ9yrW": {
       "type": "custom-header",
+      "name": "Custom Header",
       "settings": {
-        "tagline": "Find the ideal gift for your loved ones.",
+        "tagline": "Find the ideal gift for your ones.",
         "cta_label": "CHOOSE GIFT",
         "cta_link": "/"
       }
     }
   },
   "order": [
-    "header_section"
+    "custom_header_HJ9yrW"
   ]
 }
