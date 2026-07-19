@@ -221,6 +221,8 @@ export class QuickAddComponent extends Component {
       const productFormComponent = productGrid.querySelector('product-form-component');
       const variantPicker = productGrid.querySelector('variant-picker');
       const productPrice = productGrid.querySelector('product-price');
+      const directDesc = productGrid.querySelector('.product-direct-description');
+      const directPrice = productGrid.querySelector('.product-direct-price');
       const productTitle = document.createElement('a');
       productTitle.textContent = this.dataset.productTitle || '';
 
@@ -235,6 +237,13 @@ export class QuickAddComponent extends Component {
         productHeader.appendChild(productPrice);
       }
       productGrid.appendChild(productHeader);
+
+      if (directDesc) {
+        productGrid.appendChild(directDesc);
+      }
+      if (directPrice) {
+        productGrid.appendChild(directPrice);
+      }
 
       if (variantPicker) {
         productGrid.appendChild(variantPicker);

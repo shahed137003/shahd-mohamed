@@ -6,11 +6,60 @@
 (function() {
   'use strict';
 
-  const ctaButton = document.querySelector('.custom-header__cta-button');
+  // ============================================
+  // HAMBURGER MENU TOGGLE
+  // ============================================
 
-  if (ctaButton) {
-    // Ripple effect on click
-    ctaButton.addEventListener('click', function(e) {
+  const menuToggle = document.querySelector('.custom-header__menu-toggle');
+  const mobileMenu = document.querySelector('.custom-header__mobile-menu');
+
+  if (menuToggle && mobileMenu) {
+    menuToggle.addEventListener('click', function(e) {
+      e.stopPropagation();
+
+      // Toggle active state
+      this.classList.toggle('active');
+      mobileMenu.classList.toggle('open');
+
+      // Update aria-expanded
+      const isOpen = mobileMenu.classList.contains('open');
+      this.setAttribute('aria-expanded', isOpen);
+
+      // Prevent body scroll when menu is open
+      document.body.style.overflow = isOpen ? 'hidden' : '';
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener('click', function(e) {
+      const isClickInside = menuToggle.contains(e.target) || mobileMenu.contains(e.target);
+      if (!isClickInside && mobileMenu.classList.contains('open')) {
+        menuToggle.classList.remove('active');
+        mobileMenu.classList.remove('open');
+        document.body.style.overflow = '';
+        menuToggle.setAttribute('aria-expanded', 'false');
+      }
+    });
+
+    // Close menu on escape key
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && mobileMenu.classList.contains('open')) {
+        menuToggle.classList.remove('active');
+        mobileMenu.classList.remove('open');
+        document.body.style.overflow = '';
+        menuToggle.setAttribute('aria-expanded', 'false');
+        menuToggle.focus();
+      }
+    });
+  }
+
+  // ============================================
+  // CTA BUTTON RIPPLE EFFECT (Desktop)
+  // ============================================
+
+  const ctaButtons = document.querySelectorAll('.custom-header__cta-button, .custom-header__mobile-cta');
+
+  ctaButtons.forEach(function(button) {
+    button.addEventListener('click', function(e) {
       const existingRipple = this.querySelector('.ripple');
       if (existingRipple) existingRipple.remove();
 
@@ -37,13 +86,16 @@
       this.style.overflow = 'hidden';
       this.appendChild(ripple);
 
-      setTimeout(() => {
+      setTimeout(function() {
         ripple.remove();
       }, 600);
     });
-  }
+  });
 
-  // Inject ripple keyframes if not already present
+  // ============================================
+  // INJECT RIPPLE KEYFRAMES
+  // ============================================
+
   if (!document.getElementById('header-ripple-style')) {
     const style = document.createElement('style');
     style.id = 'header-ripple-style';
@@ -57,6 +109,10 @@
     `;
     document.head.appendChild(style);
   }
+
+  // ============================================
+  // LOGGING
+  // ============================================
 
   console.log('[Custom Header] Initialized');
 

@@ -21,7 +21,6 @@
   margin: 0 auto 0 auto;
   overflow: hidden;
   position: relative;
-  
 }
 
 .hero-banner-img {
@@ -29,6 +28,22 @@
   height: 100%;
   object-fit: cover;
   object-position: center;
+}
+
+/* Mobile button overlay on image */
+.hero-mobile-button-wrapper {
+  position: absolute;
+  bottom: 30px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.hero-mobile-button-wrapper .custom-hero-button {
+  pointer-events: auto;
 }
 
 /* ======================================== */
@@ -45,7 +60,6 @@
 .hero-content-row {
   display: grid;
   grid-template-columns: 0.8fr 1.2fr;
-  /* gap: 1px; */
   padding: 0 0 0 0;
   align-items: center;
   position: relative;
@@ -60,13 +74,12 @@
   flex-direction: column;
   align-items: flex-start;
   padding: 0 2rem;
-  margin-top:40px;
+  margin-top: 40px;
   z-index: 5;
   width: 100%;
 }
 
 .custom-hero-heading {
-  /* font-family: inherit; */
   font-size: clamp(2.5rem, 4vw, 3.8rem);
   font-weight: 600;
   line-height: 1.1;
@@ -85,13 +98,11 @@
   line-height: 1.6;
   color: #121212;
   margin: 0;
-  max-width:483px;
+  max-width: 483px;
 }
 
-
-
 /* ======================================== */
-/* BUTTON                                   */
+/* BUTTONS                                  */
 /* ======================================== */
 
 .custom-hero-button {
@@ -102,8 +113,6 @@
   box-sizing: border-box;
   min-width: 180px;
   padding: 16px 28px;
-  margin-top: 3rem;
-  margin-bottom: 1.5rem;
   background-color: #000000 !important;
   color: #ffffff !important;
   text-decoration: none !important;
@@ -123,20 +132,11 @@
 .custom-hero-button:hover {
   background-color: #fafa30ff !important;
   color: #000000 !important;
-  
   transform: translateY(-2px);
-  /* box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15); */
 }
-
 
 .custom-hero-button .button-text {
   display: inline-block;
-}
-
-
-.custom-hero-button:hover .arrow-icon {
-  stroke: #000000 !important;
-  transform: translateX(4px);
 }
 
 .custom-hero-button .arrow-icon {
@@ -145,11 +145,21 @@
   flex-shrink: 0;
   display: inline-block;
   stroke: #ffffff;
-  transition: transform 0.2s ease;
+  transition: stroke 0.2s ease, transform 0.2s ease;
 }
 
 .custom-hero-button:hover .arrow-icon {
+  stroke: #000000 !important;
   transform: translateX(4px);
+}
+
+.custom-hero-button--desktop {
+  margin-top: 3rem;
+  margin-bottom: 1.5rem;
+}
+
+.custom-hero-button--mobile {
+  display: none !important;
 }
 
 /* ======================================== */
@@ -166,15 +176,13 @@
 
 .hero-side-illustration {
   width: 100%;
-  /*width: 890px; */
-   height: 322px;
+  height: 322px;
   object-fit: cover;
-  
   display: block;
 }
 
 /* ======================================== */
-/* RESPONSIVE                               */
+/* RESPONSIVE - TABLET                      */
 /* ======================================== */
 
 @media screen and (max-width: 1024px) {
@@ -182,88 +190,135 @@
     gap: 40px;
     padding: 30px 0 0 0;
   }
-  
+
   .custom-hero-subtext {
     padding-right: 0;
   }
-  
-  .custom-hero-avatar-badge {
-    position: relative;
-    right: auto;
-    bottom: auto;
-    margin-top: 10px;
-    display: inline-flex;
-  }
 }
+
+/* ======================================== */
+/* RESPONSIVE - MOBILE (Text Top, Image Below) */
+/* ======================================== */
 
 @media screen and (max-width: 768px) {
-  .hero-top-banner-wrapper {
-    height: 200px;
-    margin-top: 40px;
+  /* Make the section a flex column on mobile */
+  .custom-hero-section {
+    display: flex !important;
+    flex-direction: column !important;
   }
-  
-  .hero-bottom-container {
-    padding: 0 1.5rem;
+
+  /* Hide desktop button on mobile */
+  .custom-hero-button--desktop {
+    display: none !important;
   }
-  
-  .hero-content-row {
-    grid-template-columns: 1fr;
-    gap: 30px;
-    padding: 20px 0 0 0;
+
+  /* Show mobile button on image */
+  .custom-hero-button--mobile {
+    display: inline-flex !important;
+    min-width: 200px !important;
   }
-  
-  .hero-content-column-left {
-    order: 1;
-  }
-  
+
+  /* Hide right column */
   .hero-content-column-right {
-    order: 2;
-    justify-content: center;
+    display: none !important;
   }
-  
-  .hero-side-illustration {
-    max-height: 250px;
+
+  /* ── TEXT SECTION (comes FIRST) ── */
+  .hero-bottom-container {
+    order: 1 !important; /* Text first */
+    width: 100% !important;
+    padding: 0 !important;
   }
-  
+
+  .hero-content-row {
+    gap: 0 !important;
+    padding: 0 !important;
+    grid-template-columns: 1fr !important;
+  }
+
+  .hero-content-column-left {
+    width: 100% !important;
+    padding: 2rem 1.5rem !important;
+    margin-top: 0 !important;
+    align-items: center !important;
+    text-align: center !important;
+    background: transparent !important;
+  }
+
   .custom-hero-heading {
-    font-size: 2rem;
+    text-align: center !important;
+    font-size: 2.2rem !important;
+    margin-bottom: 0.8rem !important;
+    color: #000000 !important;
   }
-  
+
   .custom-hero-subtext {
-    font-size: 0.95rem;
+    text-align: center !important;
+    max-width: 100% !important;
+    padding: 0 !important;
+    color: #121212 !important;
+    font-size: 1rem !important;
   }
-  
-  .custom-hero-button {
-    min-width: 150px;
-    padding: 14px 20px;
-    font-size: 12px;
-    width: 100%;
-    justify-content: center;
+
+  .custom-hero-body-wrapper {
+    margin-bottom: 0 !important;
   }
-  
-  .custom-hero-button .arrow-icon {
-    width: 16px;
-    height: 16px;
+
+  /* ── IMAGE SECTION (comes SECOND) ── */
+  .hero-top-banner-wrapper {
+    order: 2 !important; /* Image second */
+    height: auto !important;
+    max-height: 400px;
+    margin-top: 0 !important;
+    border-radius: 12px;
+    overflow: hidden;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .hero-banner-img {
+    height: 100% !important;
+    min-height: 250px;
+    object-fit: cover;
+  }
+
+  .hero-mobile-button-wrapper {
+    bottom: 30px;
   }
 }
 
+/* ======================================== */
+/* RESPONSIVE - SMALL MOBILE                */
+/* ======================================== */
+
 @media screen and (max-width: 480px) {
-  .hero-top-banner-wrapper {
-    height: 150px;
-    margin-top: 20px;
+  .hero-content-column-left {
+    padding: 1.5rem 1rem !important;
   }
-  
-  .hero-bottom-container {
-    padding: 0 1rem;
-  }
-  
+
   .custom-hero-heading {
-    font-size: 1.6rem;
+    font-size: 1.8rem !important;
   }
-  
-  .custom-hero-button {
-    padding: 12px 16px;
-    font-size: 11px;
-    min-width: 120px;
+
+  .custom-hero-subtext {
+    font-size: 0.9rem !important;
+  }
+
+  .custom-hero-button--mobile {
+    min-width: 160px !important;
+    padding: 14px 20px !important;
+    font-size: 12px !important;
+  }
+
+  .hero-top-banner-wrapper {
+    max-height: 300px;
+  }
+
+  .hero-banner-img {
+    min-height: 200px;
+  }
+
+  .hero-mobile-button-wrapper {
+    bottom: 20px;
   }
 }

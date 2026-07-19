@@ -3,22 +3,37 @@
 <div class="custom-header section-{{ section.id }}">
   <div class="custom-header__container">
     
-    <!-- Left: Brand Name -->
-    <div class="custom-header__brand">
-      <a href="/" class="custom-header__logo">
+    <!-- Left: Hamburger Menu Icon (mobile) / Brand (desktop) -->
+    <div class="custom-header__left">
+      <!-- Mobile Hamburger -->
+      <button class="custom-header__menu-toggle" aria-label="Menu">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
+      
+      <!-- Desktop Brand -->
+      <a href="/" class="custom-header__logo custom-header__logo--desktop">
         TISSO VISION
       </a>
     </div>
 
-    <!-- Center: Tagline -->
-    <div class="custom-header__tagline-wrapper">
+    <!-- Center: Brand Name (mobile) / Tagline (desktop) -->
+    <div class="custom-header__center">
+      <!-- Mobile Brand -->
+      <a href="/" class="custom-header__logo custom-header__logo--mobile">
+        TISSO VISION
+      </a>
+      
+      <!-- Desktop Tagline -->
       <p class="custom-header__tagline">
-        {{ section.settings.tagline | default: 'and the age loved ones' }}
+        {{ section.settings.tagline | default: 'Find the ideal gift for your loved ones.' }}
       </p>
     </div>
 
-    <!-- Right: CTA Button -->
-    <div class="custom-header__cta-wrapper">
+    <!-- Right: CTA Button (desktop only) -->
+    <div class="custom-header__right">
+      <!-- Desktop CTA Button -->
       <a href="{{ section.settings.cta_link | default: '#' }}" class="custom-header__cta-button">
         <span class="cta-text">{{ section.settings.cta_label | default: 'CHOOSE GIFT' }}</span>
         <svg class="cta-arrow" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -28,6 +43,27 @@
       </a>
     </div>
 
+  </div>
+
+  <!-- ======================================== -->
+  <!-- MOBILE MENU (hidden by default)          -->
+  <!-- ======================================== -->
+  <div class="custom-header__mobile-menu" id="mobile-menu">
+    <div class="custom-header__mobile-menu-inner">
+      <!-- Tagline -->
+      <p class="custom-header__mobile-tagline">
+        {{ section.settings.tagline | default: 'Find the ideal gift for your loved ones.' }}
+      </p>
+      
+      <!-- Mobile CTA Button -->
+      <a href="{{ section.settings.cta_link | default: '#' }}" class="custom-header__mobile-cta">
+        <span class="cta-text">{{ section.settings.cta_label | default: 'CHOOSE GIFT' }}</span>
+        <svg class="cta-arrow" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+          <polyline points="12 5 19 12 12 19"></polyline>
+        </svg>
+      </a>
+    </div>
   </div>
 </div>
 

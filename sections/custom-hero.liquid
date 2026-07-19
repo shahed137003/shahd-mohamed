@@ -1,6 +1,8 @@
 {{ 'custom-hero.css' | asset_url | stylesheet_tag }}
 
-<div class="custom-hero-section section-{{ section.id }}">
+<div 
+  class="custom-hero-section section-{{ section.id }}"
+>
   
   <!-- ZONE 1: Pure Top Image Banner (1440px x 390px) -->
   <div class="hero-top-banner-wrapper">
@@ -9,6 +11,17 @@
     {% else %}
       <img src="{{ 'hero.svg' | asset_url }}" alt="Hero Line Art Banner" width="1440" height="390" loading="eager" class="hero-banner-img">
     {% endif %}
+    
+    <!-- Button overlaid on the image (mobile only) -->
+    <div class="hero-mobile-button-wrapper">
+      <a href="{{ section.settings.button_link | default: '#' }}" class="custom-hero-button custom-hero-button--mobile">
+        <span class="button-text">{{ section.settings.button_label | default: 'SHOP NOW' }}</span>
+        <svg class="arrow-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+          <polyline points="12 5 19 12 12 19"></polyline>
+        </svg>
+      </a>
+    </div>
   </div>
 
   <!-- ZONE 2: Content Layout Area (Side-by-Side Row) -->
@@ -27,12 +40,10 @@
           {% if section.settings.subtext != blank %}
             <p class="custom-hero-subtext">{{ section.settings.subtext }}</p>
           {% endif %}
-          
-      
         </div>
 
-        <!-- Button -->
-        <a href="{{ section.settings.button_link | default: '#' }}" class="custom-hero-button">
+        <!-- Desktop button (hidden on mobile) -->
+        <a href="{{ section.settings.button_link | default: '#' }}" class="custom-hero-button custom-hero-button--desktop">
           <span class="button-text">{{ section.settings.button_label | default: 'SHOP NOW' }}</span>
           <svg class="arrow-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <line x1="5" y1="12" x2="19" y2="12"></line>
