@@ -1,0 +1,64 @@
+{{ 'custom-banner.css' | asset_url | stylesheet_tag }}
+
+{% schema %}
+{
+  "name": "Custom Banner",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "bg_image",
+      "label": "Background image"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Main title (red rectangle)",
+      "default": "YOUR TITLE"
+    },
+    {
+      "type": "richtext",
+      "id": "subtitle",
+      "label": "Subtitle (red rectangle)",
+      "default": "<p>YOUR SUBTITLE</p>"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Shop now"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link",
+      "default": "/collections/all"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Banner",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}
+
+<div class="custom-banner section-{{ section.id }}">
+  {% if section.settings.bg_image %}
+    <div class="custom-banner__bg"
+         style="background-image:url({{ section.settings.bg_image | img_url: '2048x' }});">
+    </div>
+  {% endif %}
+
+  <div class="custom-banner__content">
+    <h1 class="custom-banner__title">{{ section.settings.title }}</h1>
+    <div class="custom-banner__subtitle">
+      {{ section.settings.subtitle }}
+    </div>
+
+    <a href="{{ section.settings.button_link }}"
+       class="custom-banner__button js-banner-button">
+      {{ section.settings.button_label }}
+    </a>
+  </div>
+</div>

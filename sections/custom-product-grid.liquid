@@ -1,75 +1,70 @@
 {{ 'custom-product-grid.css' | asset_url | stylesheet_tag }}
 
-{%- liquid
-  assign product_handles = ''
-  if section.settings.product_list != blank
-    if section.settings.product_list.first != blank
-      assign product_handles = section.settings.product_list | map: 'handle' | join: ','
-    else
-      assign product_handles = section.settings.product_list
-    endif
-  endif
--%}
-
-<div class="custom-product-grid section-{{ section.id }}" 
-     data-section-id="{{ section.id }}" 
-     data-section-type="product-grid"
-     data-product-handles="{{ product_handles }}">
-  
-  <div class="custom-product-grid__container">
-    
-    <!-- Section Header -->
-    <div class="custom-product-grid__header">
-      <h2 class="custom-product-grid__title">{{ section.settings.title | default: 'Tisso vison in the wild' }}</h2>
-      {% if section.settings.description != blank %}
-        <p class="custom-product-grid__description">{{ section.settings.description }}</p>
-      {% endif %}
-    </div>
-
-    <!-- Product Grid -->
-    <div class="custom-product-grid__grid" id="product-grid-{{ section.id }}">
-      <!-- Products will be rendered by JavaScript -->
-    </div>
-    
-    <!-- Loading State -->
-    <div class="custom-product-grid__loading" id="loading-{{ section.id }}">
-      <div class="spinner"></div>
-      <p>Loading products...</p>
-    </div>
-    
-  </div>
-</div>
-
 {% schema %}
 {
   "name": "Custom Product Grid",
   "settings": [
+    { "type": "text", "id": "title", "label": "Section title", "default": "Featured Products" },
+    { "type": "textarea", "id": "description", "label": "Section description", "default": "Enter description here" }
+  ],
+  "blocks": [
     {
-      "type": "text",
-      "id": "title",
-      "label": "Section Title",
-      "default": "Tisso vison in the wild"
-    },
-    {
-      "type": "textarea",
-      "id": "description",
-      "label": "Section Description",
-      "default": "Explore our curated collection"
-    },
-    {
-      "type": "product_list",
-      "id": "product_list",
-      "label": "Product List",
+      "type": "product",
+      "name": "Product",
+      "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Select product",
+          "info": "Pick a product for this grid slot"
+        }
+      ],
       "limit": 6
     }
   ],
-  "presets": [
-    {
-      "name": "Custom Product Grid",
-      "category": "Custom"
-    }
-  ]
+  "presets": [{ "name": "Custom Product Grid", "category": "Custom" }]
 }
 {% endschema %}
 
-<script src="{{ 'custom-product-grid.js' | asset_url }}" defer></script>
+<div class="custom-product-grid section-{{ section.id }}">
+  <div class="custom-product-grid__header">
+    <h2 class="custom-product-grid__title">{{ section.settings.title }}</h2>
+    {% if section.settings.description != blank %}
+      <p class="custom-product-grid__description">{{ section.settings.description }}</p>
+    {% endif %}
+  </div>
+
+  <div class="custom-product-grid__grid">
+    {% for block in section.blocks %}
+      {% assign product = block.settings.product | product %}
+      {% if product != blank %}
+        {% render 'product-popup', product: product %}
+        <div class="grid-item" data-product-id="{{ product.id }}">
+          <img class="grid-item__image"
+               src="{{ product.featured_image | img_url: '400x400' }}"
+               alt="{{ product.title }}" loading="lazy">
+
+          <h3 class="grid-item__title">{{ product.title }}</h3>
+
+          <p class="grid-item__price">
+            {% if product.compare_at_price > product.price %}
+              <span class="price--sale">{{ product.price | money }}</span>
+              <span class="price--compare">{{ product.compare_at_price | money }}</span>
+            {% else %}
+              <span class="price--regular">{{ product.price | money }}</span>
+            {% endif %}
+          </p>
+
+          <button class="grid-item__cta js-open-popup"
+                  data-product-id="{{ product.id }}">
+            View details
+          </button>
+        </div>
+      {% else %}
+        <div class="grid-item grid-item--empty"></div>
+      {% endif %}
+    {% endfor %}
+  </div>
+</div>
+
+{{ 'custom-popup.js' | asset_url | script_tag }}

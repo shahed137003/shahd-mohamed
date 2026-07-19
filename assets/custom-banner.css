@@ -1,0 +1,54 @@
+/* custom-banner.css */
+.custom-banner {
+  position: relative;
+  overflow: hidden;
+  padding: 6rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.custom-banner__bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  filter: brightness(0.6);
+}
+.custom-banner__content {
+  position: relative;
+  max-width: 800px;
+  text-align: center;
+  color: #fff;
+}
+.custom-banner__title,
+.custom-banner__subtitle {
+  background: rgba(255,0,0,.3);
+  display: inline-block;
+  padding: 0.4rem 0.8rem;
+  margin: 0.5rem 0;
+  border-radius: 4px;
+}
+.custom-banner__button {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.9rem 2rem;
+  background: #ff6b6b;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  border-radius: 6px;
+  transition: transform .3s ease, box-shadow .3s ease;
+}
+.custom-banner__button:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 16px rgba(0,0,0,.2);
+}
+@media (max-width: 768px) {
+  .custom-banner {
+    padding: 4rem 1rem;
+  }
+  .custom-banner__title,
+  .custom-banner__subtitle {
+    font-size: 1.2rem;
+  }
+}
