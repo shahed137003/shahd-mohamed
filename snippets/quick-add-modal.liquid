@@ -391,6 +391,16 @@
 
   /* ─── Responsive Mobile View ─── */
   @media screen and (max-width: 749px) {
+    /* ─── CENTER MODAL ON MOBILE, BUT SLIGHTLY LOWER ─── */
+    .quick-add-modal {
+      margin: auto !important;
+      position: fixed !important;
+      top: 50% !important;
+      left: 50% !important;
+      transform: translate(-50%, -30%) !important; /* shifted down */
+      max-height: 90vh !important;
+    }
+
     .quick-add-modal,
     .quick-add-modal__card-wrapper {
       max-width: 94vw !important;
@@ -543,11 +553,12 @@
       margin-bottom: 8px !important;
     }
 
+    /* ─── SQUARE IMAGE ON SMALL MOBILE (100×100) ─── */
     .quick-add-modal .quick-add-modal__content .product-information__media {
-      width: 314px !important;
-      height: 314px !important;
-      min-width: 314px !important;
-      max-width: 314px !important;
+      width: 300px !important;
+      height: 200px !important;
+      min-width: 100px !important;
+      max-width: 300px !important;
     }
 
     .quick-add-modal .quick-add-modal__content .variant-option--buttons label,
