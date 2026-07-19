@@ -123,9 +123,9 @@
   /* ─── LEFT COLUMN: IMAGE ─── */
   .quick-add-modal .quick-add-modal__content .product-information__media {
     width: 100% !important;
-    min-height: 195px !important;
-    max-height: 220px !important;
-    aspect-ratio: 2 / 3 !important;
+    height: 160px !important;
+    max-height: 160px !important;
+    aspect-ratio: auto !important;
     border-radius: 0px !important;
     overflow: hidden !important;
     background: #ffffff !important;
@@ -141,7 +141,7 @@
 
   .quick-add-modal .quick-add-modal__content media-gallery img,
   .quick-add-modal .quick-add-modal__content .product-information__media img {
-    object-fit: contain !important; /* Ensure 100% of the image is visible without cropping */
+    object-fit: contain !important;
     width: 100% !important;
     height: 100% !important;
     background: #ffffff !important;
@@ -246,7 +246,6 @@
     text-align: left !important;
   }
 
-  /* ─── SIZE DROPDOWN ─── */
   /* ─── SIZE DROPDOWN ─── */
   .quick-add-modal .quick-add-modal__content .variant-option__select-wrapper {
     height: 28px !important;
@@ -390,7 +389,7 @@
     transform: translateX(4px);
   }
 
-  /* ─── Responsive Mobile View (Significantly Smaller Vertical Height, Same Layout & Structure) ─── */
+  /* ─── Responsive Mobile View ─── */
   @media screen and (max-width: 749px) {
     .quick-add-modal,
     .quick-add-modal__card-wrapper {
@@ -400,12 +399,11 @@
       border-radius: 0px !important;
     }
 
-    /* Keep Image alongside Name, Price & Description side-by-side in same row */
+    /* Keep Image alongside Name, Price & Description side-by-side */
     .quick-add-modal .quick-add-modal__content .product-details,
     .quick-add-modal .quick-add-modal__content .product-info-row {
       display: grid !important;
       grid-template-columns: 114px 1fr !important;
-      flex-direction: row !important;
       align-items: flex-start !important;
       column-gap: 12px !important;
       row-gap: 3px !important;
@@ -413,12 +411,43 @@
       margin-bottom: 10px !important;
     }
 
+    /* ─── SQUARE IMAGE ON MOBILE (114×114) ─── */
     .quick-add-modal .quick-add-modal__content .product-information__media {
       width: 114px !important;
-      height: 188px !important;
-      aspect-ratio: 2 / 3.3 !important;
+      height: 114px !important;
+      min-width: 114px !important;
+      max-width: 114px !important;
+      flex: 0 0 auto !important;
+      aspect-ratio: auto !important;
       border-radius: 0px !important;
-      flex-shrink: 0 !important;
+      overflow: hidden !important;
+      background: #ffffff !important;
+      position: relative !important;
+    }
+
+    .quick-add-modal .quick-add-modal__content .product-information__media media-gallery {
+      position: absolute !important;
+      top: 0 !important;
+      left: 0 !important;
+      width: 100% !important;
+      height: 100% !important;
+      display: block !important;
+    }
+
+    .quick-add-modal .quick-add-modal__content .product-information__media media-gallery img {
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: cover !important;
+      object-position: center !important;
+      display: block !important;
+    }
+
+    .quick-add-modal .quick-add-modal__content .product-information__media img {
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: cover !important;
+      object-position: center !important;
+      display: block !important;
     }
 
     .quick-add-modal .quick-add-modal__content .product-info-text {
@@ -446,7 +475,6 @@
       -webkit-line-clamp: 3 !important;
     }
 
-    /* Tighter vertical gaps across variant picker and options */
     .quick-add-modal .quick-add-modal__content variant-picker {
       margin-top: 4px !important;
     }
@@ -461,7 +489,6 @@
       margin-bottom: 3px !important;
     }
 
-    /* Compact 26px height for Color buttons */
     .quick-add-modal .quick-add-modal__content .variant-option--buttons label {
       height: 26px !important;
       font-size: 11px !important;
@@ -469,7 +496,6 @@
       border-radius: 0px !important;
     }
 
-    /* Compact 26px height for Size dropdown */
     .quick-add-modal .quick-add-modal__content .variant-option__select-wrapper {
       height: 26px !important;
       border-radius: 0px !important;
@@ -484,7 +510,6 @@
       width: 28px !important;
     }
 
-    /* Compact 32px height for Add to Cart CTA */
     .quick-add-modal .quick-add-modal__content product-form-component,
     .quick-add-modal .quick-add-modal__content .product-form-buttons {
       margin-top: 10px !important;
@@ -519,8 +544,10 @@
     }
 
     .quick-add-modal .quick-add-modal__content .product-information__media {
-      width: 100px !important;
-      height: 165px !important;
+      width: 314px !important;
+      height: 314px !important;
+      min-width: 314px !important;
+      max-width: 314px !important;
     }
 
     .quick-add-modal .quick-add-modal__content .variant-option--buttons label,
