@@ -127,12 +127,12 @@
   {% endif %}
 
   {% if render_choose %}
+    {% render 'quick-product-details', product: product %}
     <button
-      class="button quick-add__button quick-add__button--choose add-to-cart-button"
-      {% comment %} type="submit" is the default, so we explicitly set it to "button" to prevent the ProductFormComponent.handleSubmit from being triggered {% endcomment %}
+      class="button quick-add__button quick-add__button--choose add-to-cart-button js-open-quick-details"
       type="button"
       name="add"
-      on:click="quick-add-component/handleClick"
+      data-product-id="{{ product.id }}"
     >
       <span
         aria-hidden="true"

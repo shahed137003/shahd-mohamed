@@ -23,12 +23,12 @@
 
 {% liquid
   assign has_quick_add = false
-  if settings.quick_add and product.available
+  if product.available
     assign has_quick_add = true
   endif
 
   assign has_mobile_quick_add = false
-  if has_quick_add and settings.mobile_quick_add
+  if has_quick_add
     assign has_mobile_quick_add = true
   endif
 

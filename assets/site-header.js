@@ -1,9 +1,16 @@
 /**
- * Custom Header
- * Vanilla JavaScript - No jQuery
+ * Header Section - Vanilla JavaScript (No jQuery)
+ * ─────────────────────────────────────────────────
+ * Handles interactive enhancements for the custom
+ * site header rendered by sections/header.liquid.
+ *
+ * Features:
+ *  - Hamburger menu toggle with ARIA support
+ *  - Click-outside and Escape key to close menu
+ *  - CTA button ripple click effect
  */
 
-(function() {
+(function () {
   'use strict';
 
   // ============================================
@@ -14,14 +21,12 @@
   const mobileMenu = document.querySelector('.custom-header__mobile-menu');
 
   if (menuToggle && mobileMenu) {
-    menuToggle.addEventListener('click', function(e) {
+    menuToggle.addEventListener('click', function (e) {
       e.stopPropagation();
 
-      // Toggle active state
       this.classList.toggle('active');
       mobileMenu.classList.toggle('open');
 
-      // Update aria-expanded
       const isOpen = mobileMenu.classList.contains('open');
       this.setAttribute('aria-expanded', isOpen);
 
@@ -30,8 +35,9 @@
     });
 
     // Close menu when clicking outside
-    document.addEventListener('click', function(e) {
-      const isClickInside = menuToggle.contains(e.target) || mobileMenu.contains(e.target);
+    document.addEventListener('click', function (e) {
+      const isClickInside =
+        menuToggle.contains(e.target) || mobileMenu.contains(e.target);
       if (!isClickInside && mobileMenu.classList.contains('open')) {
         menuToggle.classList.remove('active');
         mobileMenu.classList.remove('open');
@@ -40,8 +46,8 @@
       }
     });
 
-    // Close menu on escape key
-    document.addEventListener('keydown', function(e) {
+    // Close menu on Escape key
+    document.addEventListener('keydown', function (e) {
       if (e.key === 'Escape' && mobileMenu.classList.contains('open')) {
         menuToggle.classList.remove('active');
         mobileMenu.classList.remove('open');
@@ -53,13 +59,15 @@
   }
 
   // ============================================
-  // CTA BUTTON RIPPLE EFFECT (Desktop)
+  // CTA BUTTON RIPPLE EFFECT
   // ============================================
 
-  const ctaButtons = document.querySelectorAll('.custom-header__cta-button, .custom-header__mobile-cta');
+  const ctaButtons = document.querySelectorAll(
+    '.custom-header__cta-button, .custom-header__mobile-cta'
+  );
 
-  ctaButtons.forEach(function(button) {
-    button.addEventListener('click', function(e) {
+  ctaButtons.forEach(function (button) {
+    button.addEventListener('click', function (e) {
       const existingRipple = this.querySelector('.ripple');
       if (existingRipple) existingRipple.remove();
 
@@ -86,14 +94,14 @@
       this.style.overflow = 'hidden';
       this.appendChild(ripple);
 
-      setTimeout(function() {
+      setTimeout(function () {
         ripple.remove();
       }, 600);
     });
   });
 
   // ============================================
-  // INJECT RIPPLE KEYFRAMES
+  // INJECT RIPPLE KEYFRAMES (once)
   // ============================================
 
   if (!document.getElementById('header-ripple-style')) {
@@ -114,6 +122,6 @@
   // LOGGING
   // ============================================
 
-  console.log('[Custom Header] Initialized');
-
+  console.log('[Header Section] Initialized');
+  console.log('[Header Section] Using vanilla JavaScript (no jQuery)');
 })();

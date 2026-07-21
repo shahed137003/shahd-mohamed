@@ -1,21 +1,26 @@
 /**
- * Custom Hero Section
- * Vanilla JavaScript - No jQuery
+ * Hero Section – Vanilla JavaScript (No jQuery)
+ * ───────────────────────────────────────────────
+ * Handles interactive enhancements for the custom
+ * Line-Art Hero section rendered by hero.liquid.
  */
 
-(function() {
+(function () {
   'use strict';
 
   // ============================================
   // BUTTON RIPPLE EFFECT
   // ============================================
 
-  const shopButton = document.querySelector('.custom-hero-button');
-
+  /**
+   * Attach a click-ripple animation to a button element.
+   * @param {HTMLElement} button
+   */
   function addRippleEffect(button) {
     if (!button) return;
 
-    button.addEventListener('click', function(e) {
+    button.addEventListener('click', function (e) {
+      // Remove any previous ripple before creating a new one
       const existingRipple = this.querySelector('.ripple');
       if (existingRipple) existingRipple.remove();
 
@@ -42,13 +47,16 @@
       this.style.overflow = 'hidden';
       this.appendChild(ripple);
 
+      // Auto-remove ripple span once animation finishes
       setTimeout(() => {
         ripple.remove();
       }, 600);
     });
   }
 
-  // Inject keyframe animation
+  /**
+   * Inject the ripple keyframe animation once into the document <head>.
+   */
   function injectRippleKeyframes() {
     if (document.getElementById('ripple-style-element')) return;
     const style = document.createElement('style');
@@ -64,15 +72,18 @@
     document.head.appendChild(style);
   }
 
+  // Initialise ripple on all hero buttons
   injectRippleKeyframes();
-  if (shopButton) {
-    addRippleEffect(shopButton);
-  }
+  document.querySelectorAll('.custom-hero-button').forEach(addRippleEffect);
 
   // ============================================
-  // SCROLL ANIMATIONS (Fade-in)
+  // SCROLL ANIMATIONS (Fade-in on intersection)
   // ============================================
 
+  /**
+   * Fade-in the hero text elements as they enter the viewport.
+   * Only activated on desktop (> 768 px) to avoid layout shifts on mobile.
+   */
   function setupScrollAnimations() {
     const title = document.querySelector('.custom-hero-heading');
     const descWrapper = document.querySelector('.custom-hero-body-wrapper');
@@ -80,22 +91,27 @@
 
     const elements = [title, descWrapper, actionBtn].filter(Boolean);
 
-    elements.forEach(el => {
+    // Set initial hidden state
+    elements.forEach((el) => {
       el.style.opacity = '0';
       el.style.transform = 'translateY(15px)';
       el.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
     });
 
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.style.opacity = '1';
-          entry.target.style.transform = 'translateY(0)';
-        }
-      });
-    }, { threshold: 0.05 });
+    // Reveal each element when it enters the viewport
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+          }
+        });
+      },
+      { threshold: 0.05 }
+    );
 
-    elements.forEach(el => observer.observe(el));
+    elements.forEach((el) => observer.observe(el));
   }
 
   if (window.innerWidth > 768) {
@@ -106,7 +122,6 @@
   // LOGGING
   // ============================================
 
-  console.log('[Custom Hero] Initialized successfully');
-  console.log('[Custom Hero] Using vanilla JavaScript (no jQuery)');
-
+  console.log('[Hero Section] Initialized successfully');
+  console.log('[Hero Section] Using vanilla JavaScript (no jQuery)');
 })();

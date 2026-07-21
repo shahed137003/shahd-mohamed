@@ -31,6 +31,7 @@
       {% render 'quick-add', product: product, section_id: section.id %}
     {% endif %}
     {% endcomment %}
+    {% render 'quick-product-details', product: product %}
     <quick-add-component
       class="product-card__quick-add-wrapper"
       data-product-title="{{ product.title | escape }}"
@@ -40,10 +41,10 @@
       data-uses-selling-plans="false"
     >
       <button
-        class="product-card__plus-button"
+        class="product-card__plus-button js-open-quick-details"
         type="button"
+        data-product-id="{{ product.id }}"
         aria-label="View details of {{ product.title | escape }}"
-        on:click="quick-add-component/handleClick"
       >
         <svg class="plus-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
           <line x1="12" y1="5" x2="12" y2="19"></line>

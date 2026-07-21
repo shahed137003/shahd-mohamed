@@ -12,8 +12,8 @@
   "name": "t:names.header",
   "sections": {
     "custom_header_HJ9yrW": {
-      "type": "custom-header",
-      "name": "Custom Header",
+      "type": "header",
+      "name": "Header",
       "settings": {
         "tagline": "Find the ideal gift for your ones.",
         "cta_label": "CHOOSE GIFT",

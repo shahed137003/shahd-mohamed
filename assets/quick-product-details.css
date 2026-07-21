@@ -1,0 +1,331 @@
+/* ==========================================================================
+   Quick Product Details Modal Styles (Matching Reference Design)
+   ========================================================================== */
+
+.quick-product-details {
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 2147483647 !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+/* Backdrop */
+.quick-product-details__backdrop {
+  position: fixed !important;
+  inset: 0 !important;
+  background-color: rgba(0, 0, 0, 0.65) !important;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  animation: qpdFadeIn 0.25s ease-out;
+  z-index: 1 !important;
+}
+
+/* Compact Card Container */
+.quick-product-details__card {
+  position: relative !important;
+  width: 100%;
+  max-width: 360px;
+  max-height: 88vh;
+  background-color: #ffffff !important;
+  background: #ffffff !important;
+  border-radius: 12px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.3);
+  overflow-y: auto;
+  z-index: 2 !important;
+  padding: 1.25rem 1.1rem;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 0.95rem;
+  opacity: 1 !important;
+  animation: qpdSlideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Close Button */
+.quick-product-details__close {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 1px solid #e0e0e0;
+  background-color: #ffffff;
+  color: #333333;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  transition: background-color 0.2s ease;
+}
+
+.quick-product-details__close:hover {
+  background-color: #f5f5f5;
+}
+
+/* General Row Structure */
+.qpd-row {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.qpd-row__label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #444444;
+  margin-bottom: 0.35rem;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   ROW 1: Header (Image, Name, Details, Price)
+   ══════════════════════════════════════════════════════════════════════════ */
+.qpd-row--header {
+  display: flex;
+  gap: 0.85rem;
+  align-items: stretch;
+  border-bottom: 1px solid #f0f0f0;
+  padding-bottom: 0.85rem;
+  padding-right: 1.25rem;
+}
+
+.qpd-header__media {
+  width: 105px;
+  min-height: 100%;
+  align-self: stretch;
+  flex-shrink: 0;
+  border-radius: 6px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f8f8f8;
+}
+
+.qpd-header__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.qpd-header__placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.qpd-header__info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.qpd-header__vendor {
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #888888;
+  margin-bottom: 0.15rem;
+}
+
+.qpd-header__title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  line-height: 1.2;
+  color: #111111;
+  margin: 0 0 0.25rem 0;
+}
+
+.qpd-header__price-row {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 0.25rem;
+}
+
+.qpd-header__price {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #111111;
+}
+
+.qpd-header__compare-price {
+  font-size: 0.85rem;
+  color: #999999;
+  text-decoration: line-through;
+}
+
+.qpd-header__details {
+  font-size: 0.78rem;
+  line-height: 1.35;
+  color: #666666;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   ROW 2: Color (Segmented Control Box - Exactly like image)
+   ══════════════════════════════════════════════════════════════════════════ */
+.qpd-color-segmented-box {
+  display: flex;
+  width: 100%;
+  border: 1px solid #444444;
+  border-radius: 0px;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.qpd-color-segment {
+  flex: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 42px;
+  position: relative;
+  cursor: pointer;
+  border-right: 1px solid #444444;
+  background-color: #ffffff;
+  color: #111111;
+  font-size: 0.95rem;
+  font-weight: 400;
+  user-select: none;
+  transition: background-color 0.2s ease, color 0.2s ease, font-weight 0.15s ease;
+  box-sizing: border-box;
+}
+
+.qpd-color-segment:last-child {
+  border-right: none;
+}
+
+.qpd-color-segment input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.qpd-color-segment:has(input[type="radio"]:checked) {
+  background-color: #000000 !important;
+  color: #ffffff !important;
+  font-weight: 600;
+}
+
+.qpd-color-segment__label {
+  display: inline-block;
+  padding: 0 0.5rem;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   ROW 3: Size (Select Dropdown Box with Right Divider & Arrow)
+   ══════════════════════════════════════════════════════════════════════════ */
+.qpd-select-box-wrapper {
+  position: relative;
+  width: 100%;
+  height: 42px;
+  border: 1px solid #444444;
+  border-radius: 0px;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  background-color: #ffffff;
+}
+
+.qpd-size-select {
+  flex: 1;
+  height: 100%;
+  border: none;
+  outline: none;
+  background: transparent;
+  padding: 0 0.85rem;
+  font-size: 0.95rem;
+  font-weight: 400;
+  color: #111111;
+  font-family: inherit;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.qpd-select-arrow-box {
+  width: 44px;
+  height: 100%;
+  border-left: 1px solid #444444;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  flex-shrink: 0;
+  color: #111111;
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   ROW 4: ADD TO CART Button (Solid Black Box with Right Arrow)
+   ══════════════════════════════════════════════════════════════════════════ */
+.qpd-row--actions {
+  margin-top: 0.35rem;
+}
+
+.qpd-submit-btn {
+  width: 100%;
+  height: 48px;
+  background-color: #000000 !important;
+  color: #ffffff !important;
+  border: 1px solid #000000;
+  border-radius: 0px !important;
+  padding: 0 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+  box-sizing: border-box;
+}
+
+.qpd-submit-btn:hover:not(:disabled) {
+  background-color: #000000 !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  transform: translateY(-1px);
+}
+
+.qpd-submit-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.qpd-submit-btn .btn-text {
+  flex: 1;
+  text-align: center;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #ffffff;
+  margin-left: 28px;
+}
+
+.qpd-cart-arrow {
+  stroke: #ffffff;
+  stroke-width: 1.8;
+  flex-shrink: 0;
+}
+
+/* Animations */
+@keyframes qpdFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes qpdSlideUp {
+  from { opacity: 0; transform: translateY(10px) scale(0.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
