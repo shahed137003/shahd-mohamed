@@ -106,6 +106,15 @@ class QuickProductDetailsManager {
     const selColor = colorRadio ? colorRadio.value.toLowerCase() : '';
     const selSize = sizeSelect ? sizeSelect.value.toLowerCase() : (sizeRadio ? sizeRadio.value.toLowerCase() : '');
 
+    // Update visible selected text label for Size
+    if (sizeSelect && sizeSelect.selectedIndex >= 0) {
+      const selectedOptionText = sizeSelect.options[sizeSelect.selectedIndex].text;
+      const displayText = modal.querySelector('.js-size-selected-text');
+      if (displayText && selectedOptionText) {
+        displayText.textContent = selectedOptionText;
+      }
+    }
+
     const lookups = modal.querySelectorAll('.js-variant-lookup');
     let matchedLookup = null;
 

@@ -149,15 +149,21 @@
         {% if size_option == blank and product.options_with_values.size > 1 %}{% assign size_option = product.options_with_values[1] %}{% endif %}
 
         <div class="qpd-select-box-wrapper">
+          <span class="qpd-select-display-text js-size-selected-text">
+            {% if size_option != blank and size_option.values.size > 0 %}
+              {{ size_option.values.first }}
+            {% else %}
+              Medium
+            {% endif %}
+          </span>
           <select
             class="qpd-size-select js-option-select js-size-select"
             name="quick-size-{{ product.id }}"
             aria-label="Choose your size"
           >
-            <option value="" disabled>Choose your size</option>
             {% if size_option != blank and size_option.values.size > 0 %}
               {% for val in size_option.values %}
-                <option value="{{ val | downcase }}" {% if val == "M" or val == "Medium" or forloop.first %}selected{% endif %}>
+                <option value="{{ val | downcase }}" {% if forloop.first %}selected{% endif %}>
                   {{ val }}
                 </option>
               {% endfor %}

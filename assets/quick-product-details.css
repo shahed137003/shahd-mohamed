@@ -236,22 +236,26 @@
   background-color: #ffffff;
 }
 
-.qpd-size-select {
+.qpd-select-display-text {
   flex: 1;
-  height: 100%;
-  border: none;
-  outline: none;
-  background: transparent;
   padding: 0 0.85rem;
   font-size: 0.95rem;
   font-weight: 400;
   color: #111111;
-  font-family: inherit;
-  appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
+  pointer-events: none;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.qpd-size-select {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  z-index: 10;
   cursor: pointer;
-  transition: color 0.2s ease;
 }
 
 .qpd-select-arrow-box {
@@ -264,6 +268,7 @@
   pointer-events: none;
   flex-shrink: 0;
   color: #111111;
+  z-index: 2;
   transition: border-color 0.2s ease, color 0.2s ease;
 }
 
