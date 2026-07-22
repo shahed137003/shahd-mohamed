@@ -1,0 +1,87 @@
+{% comment %}
+  ─────────────────────────────────────────────────────────────────────────────
+  custom-cart-drawer.liquid
+  ─────────────────────────────────────────────────────────────────────────────
+  A high-end, custom slide-out cart drawer component.
+  ─────────────────────────────────────────────────────────────────────────────
+{% endcomment %}
+
+<div
+  class="custom-cart-drawer js-custom-cart-drawer"
+  id="custom-cart-drawer"
+  role="dialog"
+  aria-modal="true"
+  aria-label="Shopping Cart Drawer"
+  aria-hidden="true"
+  style="display: none;"
+>
+  {% comment %} Backdrop Overlay {% endcomment %}
+  <div class="custom-cart-drawer__backdrop js-close-cart-drawer"></div>
+
+  {% comment %} Drawer Container {% endcomment %}
+  <div class="custom-cart-drawer__container">
+    {% comment %} Header {% endcomment %}
+    <div class="custom-cart-drawer__header">
+      <div class="custom-cart-drawer__title-group">
+        <h2 class="custom-cart-drawer__title">Shopping Cart</h2>
+        <span class="custom-cart-drawer__badge js-cart-count-badge">0</span>
+      </div>
+
+      <button
+        type="button"
+        class="custom-cart-drawer__close js-close-cart-drawer"
+        aria-label="Close cart drawer"
+      >
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+
+    {% comment %} Free Shipping Bar {% endcomment %}
+    <div class="custom-cart-drawer__shipping-bar js-shipping-bar" data-threshold="100">
+      <p class="custom-cart-drawer__shipping-msg js-shipping-msg">
+        Add <strong class="js-shipping-remaining">$100.00</strong> more to get <span>FREE Shipping!</span>
+      </p>
+      <div class="custom-cart-drawer__progress-bg">
+        <div class="custom-cart-drawer__progress-fill js-shipping-progress" style="width: 0%;"></div>
+      </div>
+    </div>
+
+    {% comment %} Body / Cart Items Container {% endcomment %}
+    <div class="custom-cart-drawer__body js-cart-drawer-items">
+      {% comment %} Dynamic items rendered via JS {% endcomment %}
+      <div class="custom-cart-drawer__loading">
+        <div class="custom-cart-drawer__spinner"></div>
+      </div>
+    </div>
+
+    {% comment %} Footer / Summary & Checkout {% endcomment %}
+    <div class="custom-cart-drawer__footer js-cart-drawer-footer">
+      <div class="custom-cart-drawer__subtotal-row">
+        <span class="custom-cart-drawer__subtotal-label">Subtotal</span>
+        <span class="custom-cart-drawer__subtotal-amount js-cart-subtotal">$0.00</span>
+      </div>
+
+      <p class="custom-cart-drawer__disclaimer">
+        Taxes and shipping calculated at checkout.
+      </p>
+
+      <a
+        href="/checkout"
+        class="custom-cart-drawer__checkout-btn"
+      >
+        <span>CHECKOUT NOW</span>
+        <svg width="24" height="16" viewBox="0 0 28 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="0" y1="8" x2="24" y2="8"></line>
+          <polyline points="17 1 24 8 17 15"></polyline>
+        </svg>
+      </a>
+
+      <a href="/cart" class="custom-cart-drawer__view-cart-link">
+        View full shopping cart
+      </a>
+    </div>
+  </div>
+</div>

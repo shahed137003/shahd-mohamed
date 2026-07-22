@@ -143,12 +143,14 @@
       </footer>
     </div>
 
-    {% render 'cart-drawer', render_wrapper: true %}
+    {% render 'custom-cart-drawer' %}
     {% render 'theme-drawer' %}
 
     {% render 'search-modal' %}
 
     {{ 'quick-product-details.css' | asset_url | stylesheet_tag }}
+    {{ 'custom-cart-drawer.css' | asset_url | stylesheet_tag }}
     <script src="{{ 'quick-product-details.js' | asset_url }}" defer></script>
+    <script src="{{ 'custom-cart-drawer.js' | asset_url }}" defer></script>
   </body>
 </html>
